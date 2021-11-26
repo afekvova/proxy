@@ -16,6 +16,7 @@ import ua.lil.proxy.api.command.ConsoleSender;
 import ua.lil.proxy.api.plugin.ListenerManager;
 import ua.lil.proxy.commands.StopCommand;
 import ua.lil.proxy.io.PipelineInitializer;
+import ua.lil.proxy.io.protocol.MessagePacket;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -59,14 +60,11 @@ public class Core {
     }
 
     protected void start() {
-//        this.listenerManager.registerListener(PlayerLoginPacket.class, (connection, packet) -> {
-//            PlayerLoginPacket loginPacket = (PlayerLoginPacket)packet;
-//            if (this.getPlayer(loginPacket.name) != null) {
-//                loginPacket.allowed = false;
-//                loginPacket.cancelReason = "\u00a7c\u0423\u043f\u0441!\n\u00a7c\u0427\u0443\u0432\u0430\u043a, \u043f\u0440\u043e\u0441\u0442\u0438, \u043d\u043e \u0438\u0433\u0440\u043e\u043a \u0441 \u0442\u0430\u043a\u0438\u043c \u043d\u0438\u043a\u043e\u043c \u0443\u0436\u0435 \u0438\u0433\u0440\u0430\u0435\u0442.\n\u00a7c\u0414\u043e \u0441\u0432\u0438\u0434\u0430\u043d\u0438\u044f c;";
-//            }
-//            connection.sendPacket(loginPacket);
-//        });
+        this.listenerManager.registerListener(MessagePacket.class, (connection, packet) -> {
+            MessagePacket loginPacket = (MessagePacket) packet;
+            Core.info(connection.getName() + ": " + loginPacket.getMessage());
+        });
+        
         this.commandManager.registerCommand("stop", new StopCommand());
         this.bossGroup = new NioEventLoopGroup();
         this.workerGroup = new NioEventLoopGroup();

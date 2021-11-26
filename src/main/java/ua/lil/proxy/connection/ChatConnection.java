@@ -13,7 +13,6 @@ public class ChatConnection implements Connection {
 
     ChannelHandlerContext channel;
     String name;
-    int port;
 
     @Override
     public String getAddress() {
@@ -37,7 +36,7 @@ public class ChatConnection implements Connection {
 
     @Override
     public void onConnect() {
-        System.out.println("connect");
+//        Core.info("connect");
     }
 
     @Override

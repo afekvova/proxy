@@ -27,7 +27,7 @@ public class PacketHandler extends SimpleChannelInboundHandler<AbstractPacket> {
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, AbstractPacket abstractPacket) throws Exception {
         if (Core.isDebug())
             Core.info("[" + this.connection.getName() + "] PacketHandler has read: " + abstractPacket.toString());
-//        Core.getInstance().getListenerManager().handleListeners(this.connection, packet);
+        Core.getInstance().getListenerManager().handleListeners(this.connection, abstractPacket);
     }
 }
 

@@ -10,25 +10,22 @@ import ua.lil.proxy.io.AbstractPacket;
 @Setter
 @Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class HandshakePacket extends AbstractPacket {
+public class MessagePacket extends AbstractPacket {
 
-    String name;
-    boolean allowed;
+    String message;
 
-    public HandshakePacket() {
-        super((short) 0);
+    public MessagePacket() {
+        super((short) 1);
     }
 
     @Override
     protected void read(ByteBuf buf) {
-        this.name = HandshakePacket.readString(buf);
-        this.allowed = buf.readBoolean();
+        this.message = MessagePacket.readString(buf);
     }
 
     @Override
     protected void write(ByteBuf buf) {
-        HandshakePacket.writeString(buf, this.name);
-        buf.writeBoolean(this.allowed);
+        MessagePacket.writeString(buf, this.message);
     }
 }
 

@@ -39,12 +39,10 @@ public class ListenerManager {
     public void handleListeners(Connection connection, AbstractPacket packet) {
         Collection<Listener> listeners = this.listeners.get(packet.getClass());
         if (listeners != null) {
-            Multimap<Class<? extends AbstractPacket>, Listener> multimap = this.listeners;
-            synchronized (multimap) {
+            synchronized (this.listeners) {
                 Iterator<Listener> iterator = listeners.iterator();
-                while (iterator.hasNext()) {
+                while (iterator.hasNext())
                     iterator.next().handle(connection, packet);
-                }
             }
         }
     }

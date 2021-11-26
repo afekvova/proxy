@@ -5,15 +5,14 @@ import java.io.IOException;
 public class ProxyMain {
 
     public ProxyMain() throws IOException {
-        System.out.println("Started proxy by Team LiL");
+        Core.info("Started proxy by Team LiL");
         Core core = new Core();
         Core.setInstance(core);
         core.start();
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
             public void run() {
-                System.out.println("Stop core");
-                core.stop();
+                System.exit(0);
             }
         });
 
@@ -29,8 +28,8 @@ public class ProxyMain {
         try {
             new ProxyMain();
         } catch (IOException exception) {
-            System.out.println("Error start proxy: " + exception.getMessage());
+            Core.info("Error start proxy: " + exception.getMessage());
         }
-        System.out.println("Proxy start in " + (System.currentTimeMillis() - startTime) + "ms");
+        Core.info("Proxy start in " + (System.currentTimeMillis() - startTime) + "ms");
     }
 }

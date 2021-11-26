@@ -33,7 +33,7 @@ public class InitialHandler extends SimpleChannelInboundHandler<AbstractPacket> 
         if (packet instanceof HandshakePacket) {
             Core.info("[/" + InitialHandler.getChannelIp(channelHandlerContext.channel()) + "] -> InitialHandler has read handshake: " + packet.toString());
             HandshakePacket handshakePacket = (HandshakePacket) packet;
-            Connection connection = new ChatConnection(channelHandlerContext, handshakePacket.getName(), handshakePacket.getPort());
+            Connection connection = new ChatConnection(channelHandlerContext, handshakePacket.getName());
             channelHandlerContext.writeAndFlush(packet);
             channelHandlerContext.pipeline().removeLast();
             connection.onConnect();
