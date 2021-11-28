@@ -1,7 +1,7 @@
 package ua.lil.proxy.io;
 
 import io.netty.channel.ChannelHandlerContext;
-import ua.lil.proxy.Core;
+import ua.lil.proxy.helpers.LogHelper;
 
 
 public abstract class ChannelWrapper {
@@ -19,12 +19,12 @@ public abstract class ChannelWrapper {
     protected abstract void onPacketRead(AbstractPacket var1);
 
     protected void packetRead(AbstractPacket packet) {
-        Core.info("[/" + this.getChannelName() + "] " + this.getWrapperName() + " IN: " + packet.toString());
+        LogHelper.info("[/" + this.getChannelName() + "] " + this.getWrapperName() + " IN: " + packet.toString());
         this.onPacketRead(packet);
     }
 
     public void sendPacket(AbstractPacket packet) {
-        Core.info("[/" + this.getChannelName() + "] " + this.getWrapperName() + " OUT: " + packet.toString());
+        LogHelper.info("[/" + this.getChannelName() + "] " + this.getWrapperName() + " OUT: " + packet.toString());
         this.getChannel().writeAndFlush(packet);
     }
 }

@@ -3,7 +3,7 @@ package ua.lil.proxy.io;
 import io.netty.buffer.ByteBuf;
 import ua.lil.proxy.io.exception.BadPacketException;
 import ua.lil.proxy.io.protocol.HandshakePacket;
-import ua.lil.proxy.io.protocol.MessagePacket;
+import ua.lil.proxy.io.protocol.UserMessagePacket;
 
 import java.util.HashMap;
 
@@ -33,7 +33,7 @@ public class PacketMapper {
 
     static {
         packets.put((short) 0, HandshakePacket.class);
-        packets.put((short) 1, MessagePacket.class);
+        packets.put((short) 1, UserMessagePacket.class);
     }
 }
 

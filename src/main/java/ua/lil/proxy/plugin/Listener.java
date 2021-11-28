@@ -1,4 +1,4 @@
-package ua.lil.proxy.api.plugin;
+package ua.lil.proxy.plugin;
 
 import ua.lil.proxy.connection.Connection;
 import ua.lil.proxy.io.AbstractPacket;
